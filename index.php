@@ -41,18 +41,49 @@
     ];
 ?>
 
-<?php 
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <title>Document</title>
+ </head>
+ <body>
+<table class="table">
+ <?php 
     foreach($hotels as $key => $hotel) { ?>
+    <?php if($key == 0){ ?>
+        <thead>
+            <tr>
+        <?php foreach($hotel as $key => $info) { ?>
+                        <th scope="col">
+                            <?php echo $key ?>
+                        </th>
+                        <?php } ?>
+                    </tr>
+                </thead>
+    <?php } ?>
+    <tbody>
+        <tr>
         <?php foreach ($hotel as $key => $info) {?>
-                <?php if($key == 'parking') {
-                    if($info == true){
-                        echo $key.': Si <br/>';
-                    }else {
-                        echo $key.': No <br/>';
-                    }
-                }else{
-                    echo $key.": ".$info."<br/>";
-                }
-                ?>
-            <?php } ?>
- <?php } ?>
+                        <td>
+                        <?php if($key == 'parking') {
+                        if($info == true){
+                            echo 'Si <br/>';
+                        }else {
+                            echo 'No <br/>';
+                        }
+                        }else{
+                            echo $info."<br/>";
+                        }
+                        ?>
+                        </td>
+                        <?php } ?>
+                    </tr>
+                </tbody>
+                <?php } ?>
+</table>
+ </body>
+ </html>
