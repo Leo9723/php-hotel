@@ -39,6 +39,10 @@
         ],
 
     ];
+
+    $parking = $_POST['parcheggio'];
+
+    $search = isset($_POST['parcheggio']) ? 'true' : 'false';
 ?>
 
  <!DOCTYPE html>
@@ -51,6 +55,13 @@
     <title>Document</title>
  </head>
  <body>
+    <form action="./index.php" method="POST">
+        <select name="parcheggio" id="parcheggio">
+            <option value="1">Si</option>
+            <option value="">No</option>
+        </select>
+        <button>Cerca</button>
+    </form>
 <table class="table">
  <?php 
     foreach($hotels as $key => $hotel) { ?>
@@ -67,20 +78,49 @@
     <?php } ?>
     <tbody>
         <tr>
-        <?php foreach ($hotel as $key => $info) {?>
-                        <td>
-                        <?php if($key == 'parking') {
-                        if($info == true){
-                            echo 'Si <br/>';
-                        }else {
-                            echo 'No <br/>';
+        <?php 
+        if($search == 'true') {
+            if($parking == $hotel['parking']) {
+                foreach ($hotel as $key => $info) {?>
+                                <td>
+                                <?php 
+                                        if($key == 'parking') {
+                                            if($info == true){
+                                                echo 'Si <br/>';
+                                            }
+                                            else {
+                                                echo 'No <br/>';
+                                            }
+                                        }
+                                        else{
+                                            echo $info."<br/>";
+                                        } 
+                                ?>
+                                </td>
+                                <?php }
+                
+            }
+        };
+        if($search == 'false'){
+            foreach ($hotel as $key => $info) {?>
+                <td>
+                <?php 
+                        if($key == 'parking') {
+                            if($info == true){
+                                echo 'Si <br/>';
+                            }
+                            else {
+                                echo 'No <br/>';
+                            }
                         }
-                        }else{
+                        else{
                             echo $info."<br/>";
-                        }
-                        ?>
-                        </td>
-                        <?php } ?>
+                        } 
+                ?>
+                </td>
+                <?php }
+        };
+        ?>
                     </tr>
                 </tbody>
                 <?php } ?>
