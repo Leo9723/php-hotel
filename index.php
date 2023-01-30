@@ -44,6 +44,15 @@
 <?php 
     foreach($hotels as $key => $hotel) { ?>
         <?php foreach ($hotel as $key => $info) {?>
-                <?php echo $key.": ".$info."<br/>" ?>
+                <?php if($key == 'parking') {
+                    if($info == true){
+                        echo $key.': Si <br/>';
+                    }else {
+                        echo $key.': No <br/>';
+                    }
+                }else{
+                    echo $key.": ".$info."<br/>";
+                }
+                ?>
             <?php } ?>
  <?php } ?>
